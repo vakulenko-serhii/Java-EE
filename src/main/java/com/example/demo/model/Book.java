@@ -1,12 +1,13 @@
 package com.example.demo.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class Book {
 
     String name;
