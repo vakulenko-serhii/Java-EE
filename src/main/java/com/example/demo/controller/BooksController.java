@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Book;
 import com.example.demo.service.BookService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,13 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class BooksController {
 
     private final BookService bookService;
-
-    public BooksController(BookService bookService) {
-        this.bookService = bookService;
-    }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<List<Book>> saveBook(
@@ -33,7 +31,7 @@ public class BooksController {
     ) {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(bookService.findByNameIsbn(book.getName(),book.getIsbn()));
+                .body(bookService.findByNameIsbn(book.getName(),book.getIsbn(),book.getAuthor()));
     }
 
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
@@ -42,4 +40,5 @@ public class BooksController {
                 .status(HttpStatus.OK)
                 .body(bookService.getAll());
     }
+
 }

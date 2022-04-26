@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-public class SingBook {
+public class SelectedBookController {
 
     private final BookService bookService;
 
-//    @RequestMapping("/")
-//    public String index() {
-//        return "index";
-//    }
+    @RequestMapping("/")
+    public String index() {
+        return "index";
+    }
 
     @GetMapping("/book/{isbn}")
     public String getBookByIsbn(@PathVariable String isbn, @ModelAttribute Book book, Model model) {

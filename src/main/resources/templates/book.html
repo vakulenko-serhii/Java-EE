@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -20,13 +20,22 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-<div>Information about book</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Book Page</li>
+    </ol>
+</nav>
+
+<h3>Information about book</h3>
+
+<form>
+    Isbn: <th:block th:text="${book.isbn}" />
 <br />
-isbn: <th:block th:text="${book.isbn}" />
+Name: <th:block th:text="${book.name}" />
 <br />
-name: <th:block th:text="${book.name}" />
-<br />
-author: <th:block th:text="${book.author}" />
+Author: <th:block th:text="${book.author}" />
+</form>
 
 </body>
 </html>
