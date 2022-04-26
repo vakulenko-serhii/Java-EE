@@ -55,7 +55,7 @@ class BooksControllerTest{
         byte[] book = Objects.requireNonNull(BooksControllerTest.class.getResourceAsStream("/request.json")).readAllBytes();
         Book bookObj = new Book("1984", "554732", "George Orwell");
 
-        when(booksService.findByNameIsbn(any(),any())).thenReturn(List.of(bookObj));
+        when(booksService.findByNameIsbn(any(),any(),any())).thenReturn(List.of(bookObj));
 
         mockMvc.perform(
                         post("/find")
@@ -65,7 +65,7 @@ class BooksControllerTest{
                 .andExpect(status().isOk())
                 .andExpect(content().json(new String(Objects.requireNonNull(BooksControllerTest.class.getResourceAsStream("/response.json")).readAllBytes())));
 
-        verify(booksService).findByNameIsbn("1984", "554732");
+        verify(booksService).findByNameIsbn("1984", "554732", "George Orwell");
     }
 
     @Test
