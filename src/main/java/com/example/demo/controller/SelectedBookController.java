@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Book;
+import com.example.demo.service.BookRepository;
 import com.example.demo.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SelectedBookController {
 
     private final BookService bookService;
+    private final BookRepository bookRepository;
 
     @RequestMapping("/")
     public String index() {
@@ -24,7 +26,7 @@ public class SelectedBookController {
     @GetMapping("/book/{isbn}")
     public String getBookByIsbn(@PathVariable String isbn, @ModelAttribute Book book, Model model) {
 
-        model.addAttribute("book", bookService.findByIsbn(isbn));
+        model.addAttribute("book", bookRepository.findById(isbn));
         return "book";
     }
 }
