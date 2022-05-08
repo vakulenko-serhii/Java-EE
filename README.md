@@ -34,3 +34,8 @@
 4. Додати пошук книг по імені або ISBN, або автору
 
 <img width="553" alt="Снимок экрана 2022-04-26 в 19 12 13" src="https://user-images.githubusercontent.com/64897246/165345213-3158a106-b10f-4937-b5b1-19ebecab3ebb.png">
+
+**Домашнє завдання 7.**
+
+1. До сервісу книжок додати Spring Data Repositories замість EntityManager
+2. Реалізувати пошук книжок по назві та ISBN
