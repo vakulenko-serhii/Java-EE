@@ -18,7 +18,7 @@ public class SighUpController {
     private final UserRepository userRepository;
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public void signUp(@RequestBody final UserEntity user) {
+    public void signUp(@Valid @RequestBody final UserEntity user) {
 
         System.out.println(user.getLogin());
         System.out.println(user.getPassword());
