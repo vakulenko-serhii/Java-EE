@@ -25,11 +25,12 @@
     <button type="save" class="btn btn-success">Sign Up</button>
 </form>
 </div>
-
+<div id="response"></div>
 <script>
     $(function () {
         $('#signUpForm').submit(function (e) {
             e.preventDefault();
+            $('#response').empty();
 
             $.ajax({
                 type: 'POST',
@@ -41,6 +42,13 @@
                 }),
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader('Content-Type', 'application/json')
+                },
+                success: function (response) {
+                    $('#response').text('OK:\n' + JSON.stringify(response, null, 4));
+                },
+                error: function (xhr) {
+                    var er = JSON.stringify(xhr.responseText, null, 4).slice(4,-4);
+                    alert(er);
                 }
             });
         });
