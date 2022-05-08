@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -22,9 +24,11 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Pattern(regexp = "^[a-zA-Z0-9]*$", message = "Invalid Login. Only Latin letters and numbers")
     @Column(name = "login", unique = true)
     private String login;
 
+    @Size(min = 8, max = 20, message = "Invalid password. Length should be 8-20 chars")
     @Column(name = "password")
     private String password;
 

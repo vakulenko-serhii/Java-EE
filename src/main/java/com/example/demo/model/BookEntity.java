@@ -4,6 +4,8 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,6 +22,8 @@ public class BookEntity {
     String name;
 
     @Id
+    @NotEmpty(message = "Can not be empty")
+    @Pattern(regexp = "^(\\d{10})?$", message = "Must contain at least 10 digits")
     @Column(name = "isbn")
     String isbn;
 
