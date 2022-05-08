@@ -1,48 +1,46 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Book;
+import com.example.demo.model.BookEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQuery;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class BookService {
 
     private final EntityManager entityManager;
-    List<Book> books = new ArrayList<>();
+    List<BookEntity> books = new ArrayList<>();
 
     @Transactional // Describes a transaction attribute on an individual method or on a class.
-    public Book add(Book book) {
+    public BookEntity add(BookEntity book) {
         return entityManager.merge(book);
     }
 
-    public List<Book> getAll() {
-        return entityManager.createQuery("SELECT c FROM Book c",Book.class)
+    public List<BookEntity> getAll() {
+        return entityManager.createQuery("SELECT c FROM BookEntity c", BookEntity.class)
                 .getResultList();
     }
 
-    public List<Book> findByNameIsbn(String name, String isbn, String author) {
+    public List<BookEntity> findByNameIsbn(String name, String isbn, String author) {
         return entityManager.createQuery(
-                        "SELECT c FROM Book c WHERE " +
+                        "SELECT c FROM BookEntity c WHERE " +
                                 "(c.isbn = :isbn) OR " +
                                 "(c.name = :name) OR " +
                                 "(c.author = :author)",
-                        Book.class)
+                        BookEntity.class)
                 .setParameter("isbn", isbn)
                 .setParameter("name", name)
                 .setParameter("author", author)
                 .getResultList();
     }
-    public Book findByIsbn(String isbn) {
+    public BookEntity findByIsbn(String isbn) {
         return entityManager.createQuery(
-                        "SELECT c FROM Book c WHERE c.isbn = :isbn", Book.class)
+                        "SELECT c FROM BookEntity c WHERE c.isbn = :isbn", BookEntity.class)
                 .setParameter("isbn", isbn)
                 .getSingleResult();
     }
